@@ -1,7 +1,10 @@
-const CACHE_NAME = "service-phrases-v1";
+const CACHE_NAME = "service-phrases-v2";
 const ASSETS = [
   "/",
   "/index.html",
+  "/style.css",
+  "/data.js",
+  "/app.js",
   "/manifest.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
