@@ -9,12 +9,15 @@ const LANG_MAP = {
   it: "it-IT",
   ru: "ru-RU",
   ar: "ar-SA",
-  th: "th-TH"
+  th: "th-TH",
+  pt: "pt-BR",
+  he: "he-IL"
 };
 
 // ── DOM ──
 const phraseSelect = document.getElementById("phraseSelect");
 const langSelect = document.getElementById("langSelect");
+const toggleMoreLangsBtn = document.getElementById("toggleMoreLangs");
 const placeholder = document.getElementById("placeholder");
 const card = document.getElementById("card");
 const langBadge = document.getElementById("langBadge");
@@ -38,6 +41,7 @@ speakBtn.insertAdjacentElement("afterend", voiceWarning);
 let currentEntry = null;
 let currentAudio = null;
 let availableVoices = [];
+let showMoreLangs = false;
 
 function loadVoices() {
   availableVoices = window.speechSynthesis.getVoices();
@@ -55,12 +59,45 @@ chineseOptions.forEach(c => {
   phraseSelect.appendChild(opt);
 });
 
-LANGUAGES.forEach(l => {
-  const opt = document.createElement("option");
-  opt.value = l.id;
-  opt.textContent = l.name;
-  langSelect.appendChild(opt);
-});
+function isLangVisible(lang) {
+  return lang.enabled !== false || showMoreLangs;
+}
+
+function hasHiddenLanguages() {
+  return LANGUAGES.some(l => l.enabled === false);
+}
+
+function populateLangSelect() {
+  const previous = langSelect.value;
+  langSelect.innerHTML = '<option value="">— 请选择 —</option>';
+
+  LANGUAGES.forEach(l => {
+    if (!isLangVisible(l)) return;
+    const opt = document.createElement("option");
+    opt.value = l.id;
+    opt.textContent = l.name;
+    langSelect.appendChild(opt);
+  });
+
+  if (previous && [...langSelect.options].some(o => o.value === previous)) {
+    langSelect.value = previous;
+  } else {
+    langSelect.value = "";
+  }
+}
+
+function updateMoreLangsButton() {
+  if (!hasHiddenLanguages()) {
+    toggleMoreLangsBtn.hidden = true;
+    return;
+  }
+  toggleMoreLangsBtn.hidden = false;
+  toggleMoreLangsBtn.textContent = showMoreLangs ? "收起更多语言" : "显示更多语言";
+  toggleMoreLangsBtn.setAttribute("aria-expanded", showMoreLangs ? "true" : "false");
+}
+
+populateLangSelect();
+updateMoreLangsButton();
 
 function getLangMeta(langId) {
   return LANGUAGES.find(l => l.id === langId);
@@ -151,7 +188,7 @@ function renderCard(entry) {
   const meta = getLangMeta(entry.lang);
   langBadge.textContent = meta.name;
   original.textContent = entry.text;
-  original.dir = entry.lang === "ar" ? "rtl" : "ltr";
+  original.dir = entry.lang === "ar" || entry.lang === "he" ? "rtl" : "ltr";
   meaning.textContent = entry.meaning;
   ipaEl.textContent = entry.ipa;
   katakanaEl.textContent = entry.katakana;
@@ -276,6 +313,12 @@ function speak() {
 
 phraseSelect.addEventListener("change", updateCard);
 langSelect.addEventListener("change", updateCard);
+toggleMoreLangsBtn.addEventListener("click", () => {
+  showMoreLangs = !showMoreLangs;
+  populateLangSelect();
+  updateMoreLangsButton();
+  updateCard();
+});
 console.log("[APP] app.js loaded", new Date().toISOString());
 
 speakBtn.addEventListener("click", event => {

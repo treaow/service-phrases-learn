@@ -81,6 +81,25 @@
       border-color: var(--accent);
     }
 
+    .btn-more-langs {
+      display: block;
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.45rem 0;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-more-langs:hover {
+      color: var(--accent-hover);
+    }
+
     .card {
       background: var(--surface);
       border-radius: var(--radius);
