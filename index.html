@@ -22,6 +22,11 @@
       <p>固定短句 · 工作前快速复习</p>
     </header>
 
+    <section id="mainView" aria-label="常用接客语言">
+    <a class="regional-entry" id="regionalEntry" href="#regional">
+      <span><strong>地区特色问候</strong><small>8 个地区 · 用一句当地话拉近距离</small></span>
+      <span aria-hidden="true">→</span>
+    </a>
     <div class="controls">
       <div class="field">
         <label for="phraseSelect">中文句式</label>
@@ -86,9 +91,31 @@
         </div>
       </div>
     </article>
+    </section>
+
+    <section id="regionalView" hidden aria-labelledby="regionalTitle">
+      <a class="back-link" href="#home">← 常用接客语言</a>
+      <h2 class="view-title" id="regionalTitle" tabindex="-1">地区特色问候</h2>
+      <p class="view-intro">先说一句当地话，再用彼此熟悉的语言继续服务。</p>
+      <div class="region-list" id="regionList"></div>
+    </section>
+
+    <section id="regionDetailView" hidden aria-labelledby="regionTitle">
+      <nav class="regional-nav" aria-label="地区页面导航">
+        <a class="back-link" href="#regional">← 全部地区</a>
+        <a class="back-link" href="#home">返回主词库</a>
+      </nav>
+      <h2 class="view-title" id="regionTitle" tabindex="-1"></h2>
+      <p class="region-local-name" id="regionLocalName"></p>
+      <p class="region-note" id="regionNote"></p>
+      <p class="region-note" id="regionTTSNote"></p>
+      <p class="pronunciation-note">IPA 为代表性读音，口音会有差异；片假名仅为近似辅助。罗马字栏保留拉丁字母原拼写。</p>
+      <div class="regional-phrases" id="regionalPhrases"></div>
+    </section>
   </div>
 
   <script src="data.js"></script>
-  <script src="app.js?v=20260803-1"></script>
+  <script src="regional-data.js"></script>
+  <script src="app.js?v=20261025-1"></script>
 </body>
 </html>

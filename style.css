@@ -281,4 +281,48 @@
         grid-column: 1 / -1;
       }
     }
-  
+
+
+/* 地区问候沿用主词库的卡片、颜色与发音按钮。 */
+[hidden] { display: none !important; }
+.regional-entry, .region-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  text-decoration: none;
+  min-height: 64px;
+}
+.regional-entry { margin-bottom: 1.25rem; }
+.regional-entry strong { color: var(--accent); font-size: 1rem; }
+.regional-entry small, .region-link small {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+.region-list, .regional-phrases { display: grid; gap: 0.875rem; }
+.region-link .region-flag { font-size: 1.75rem; }
+.region-link .region-label { flex: 1; }
+.regional-nav { display: flex; justify-content: space-between; gap: 0.75rem; }
+.back-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-size: 0.875rem; }
+.view-title { font-size: 1.25rem; line-height: 1.4; margin: 0.5rem 0; }
+.view-title:focus { outline: none; }
+.view-intro, .region-local-name { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem; }
+.region-note { font-size: 0.875rem; margin: 0.5rem 0; }
+.pronunciation-note { font-size: 0.75rem; color: var(--text-muted); margin: 0.875rem 0 1rem; }
+.regional-card .card-main { padding: 1rem; }
+.regional-card .card-original { font-size: clamp(1.5rem, 6vw, 1.875rem); }
+.regional-card .card-meaning { margin-bottom: 0.75rem; font-size: 0.875rem; }
+.regional-card .pronunciation-grid { margin-bottom: 0.875rem; }
+.regional-card .card-extra { padding: 0.875rem 1rem; }
+.regional-card .extra-section + .extra-section { margin-top: 0.75rem; padding-top: 0.75rem; }
+.regional-card h3 { font-size: 0.8125rem; color: var(--accent); margin-bottom: 0.5rem; }
+.voice-warning { margin-top: 0.75rem; font-size: 0.875rem; color: #dc2626; text-align: center; line-height: 1.5; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.regional-card .pronunciation-grid { grid-template-columns: 1fr 1fr; }

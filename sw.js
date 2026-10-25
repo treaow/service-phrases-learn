@@ -1,10 +1,12 @@
-const CACHE_NAME = "service-phrases-v2";
+const CACHE_NAME = "service-phrases-v3-regional-20261025";
 const ASSETS = [
   "/",
   "/index.html",
   "/style.css",
   "/data.js",
+  "/regional-data.js",
   "/app.js",
+  "/app.js?v=20261025-1",
   "/manifest.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
